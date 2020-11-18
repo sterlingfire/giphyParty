@@ -6,7 +6,7 @@ async function search(evt) {
   evt.preventDefault();
   let query = $("#searchText").val();
   let url = await searchGiphy(query);
-  
+
   addGif(url);
 }
 
@@ -19,7 +19,7 @@ function remove() {
 async function searchGiphy(query) {
   const apiKey = "MhAodEJIJxQMxW9XqxKjyXfNYdLoOIym"   //make it a global variable
   let searchURL = `http://api.giphy.com/v1/gifs/search`;
-  let response = await axios.get(searchURL,{params : {api_key : apiKey, q : query}});
+  let response = await axios.get(searchURL, { params: { api_key: apiKey, q: query } });
 
   return response.data.data[0].images.original.url;
 }
@@ -27,8 +27,10 @@ async function searchGiphy(query) {
 /**Displays the gif in the DOM */
 function addGif(url) {
   $("#gifs").append("<div>");
+  $("#gifs>div:last-child");
   $("#gifs>div:last-child").append("<img>");
-  $("#gifs>div:last-child>img").attr("src", url);
+  $("#gifs>div:last-child>img").attr("src", url).addClass("gif");
+
 }
 
 /**Add event listeners to search and remove buttons */
